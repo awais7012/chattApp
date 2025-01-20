@@ -20,5 +20,5 @@ This is a real-time chat application built with Node.js, Express, EJS, and Socke
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/awais7012/chattApp
+   git clone https://github.com/awais7012/chattApp.git
    cd chatApp
