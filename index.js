@@ -16,8 +16,30 @@ io.on('connection', (socket) => {
     socket.on('chat message', (data) => {
         // Broadcast the message text to others
         socket.broadcast.emit('chat message', {
-            text: data.text
+            text: data.text,
+            id: data.id  // Make sure we're passing the message ID
         });
+    });
+
+    // Add new handler for reactions
+    socket.on('message reaction', (data) => {
+        // Broadcast the reaction to all other clients
+        socket.broadcast.emit('message reaction', {
+            messageId: data.messageId,
+            reaction: data.reaction
+        });
+    });
+
+    // Handle music file sharing
+    socket.on('music file', (data) => {
+        console.log("Broadcasting music file");
+        socket.broadcast.emit('music file', data);
+    });
+
+    // Handle music controls
+    socket.on('music control', (data) => {
+        console.log("Broadcasting music control:", data.action);
+        socket.broadcast.emit('music control', data);
     });
 
     socket.on('disconnect', () => {
